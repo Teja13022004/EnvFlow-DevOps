@@ -133,7 +133,7 @@ jobs:
         run: |
           if [ ${{ job.status }} == 'success' ]; then
             echo "✅ TEST deployment completed successfully"
-            echo "🔗 Access at: http://${{ secrets.AWS_EC2_HOST }}:3002"
+            echo " Access at: http://${{ secrets.AWS_EC2_HOST }}:3002"
           else
             echo " TEST deployment failed"
             exit 1
