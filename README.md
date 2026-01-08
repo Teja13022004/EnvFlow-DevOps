@@ -232,16 +232,3 @@ Check all environments on the single host:
 - **Dev**: `http://<EC2-IP>:3001/info`
 - **Test**: `http://<EC2-IP>:3002/info`
 
-## 📝 License
-
-ISC
-
-## 👤 Author
-
-Your Name - DevOps Project Assignment
-<<<<<<< HEAD
-# Trigger PROD  deployment
-=======
-# Trigger TEST deployment
-# Trigger TEST deployment
->>>>>>> test
