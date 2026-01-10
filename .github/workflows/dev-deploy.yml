@@ -90,7 +90,7 @@ jobs:
             until curl -f -s http://localhost:3001/health > /dev/null; do
               RETRY_COUNT=$((RETRY_COUNT+1))
               if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
-                echo "❌ Health check failed after $((MAX_RETRIES*SLEEP_SEC)) seconds"
+                echo " Health check failed after $((MAX_RETRIES*SLEEP_SEC)) seconds"
                 echo "📋 Container Status:"
                 docker ps -a | grep devops-app-dev
                 echo "📋 Container Logs:"
@@ -101,14 +101,14 @@ jobs:
               sleep $SLEEP_SEC
             done
             
-            echo "✅ DEV deployment successful!"
+            echo " DEV deployment successful!"
             docker ps | grep devops-app-dev
 
       - name: Deployment notification
         if: always()
         run: |
           if [ ${{ job.status }} == 'success' ]; then
-            echo "✅ DEV deployment completed successfully"
+            echo " DEV deployment completed successfully"
             echo "🔗 Access at: http://${{ secrets.AWS_EC2_HOST }}:3001"
           else
             echo " DEV deployment failed"

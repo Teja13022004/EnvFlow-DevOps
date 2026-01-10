@@ -1,6 +1,6 @@
 # DevOps Project - Multi-Environment Deployment
 
-A complete DevOps workflow demonstration with Node.js application, Docker containerization, and automated CI/CD pipelines for Dev, Test, and Production environments using a single cost-effective AWS EC2 instance.
+A complete DevOps workflow demonstration with Node.js application, Docker containerization, and automated CI/CD pipelines for Dev, Test, and Production environments using AWS EC2 instances.
 
 ## 📋 Project Overview
 
@@ -15,21 +15,24 @@ This project demonstrates a production-ready DevOps setup optimized for cost eff
 ## 🏗️ Architecture
 
 ```
-┌───────────────────────────────────────────┐
-│              AWS EC2 Instance             │
-│  ┌───────────┐ ┌───────────┐ ┌──────────┐ │
-│  │    PROD   │ │    DEV    │ │   TEST   │ │
-│  │ Container │ │ Container │ │ Container│ │
-│  │ Port 3000 │ │ Port 3001 │ │ Port 3002│ │
-│  └───────────┘ └───────────┘ └──────────┘ │
-└───────────────────────────────────────────┘
-                     ▲
-                     │
-              GitHub Actions
-                     │
-              ┌──────┴──────┐
-              │  Docker Hub │
-              └─────────────┘
+
+                         GitHub Actions
+                               │
+                               ▼
+                          Docker Hub
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        │                      │                      │
+        ▼                      ▼                      ▼
+┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
+│  DEV EC2        │   │  TEST EC2       │   │  PROD EC2       │
+│─────────────────│   │─────────────────│   │─────────────────│
+│ Docker          │   │ Docker          │   │ Docker          │
+│ Container       │   │ Container       │   │ Container       │
+│ App Port 3000   │   │ App Port 3000   │   │ App Port 3000   │
+│ Env: DEV        │   │ Env: TEST       │   │ Env: PROD       │
+└─────────────────┘   └─────────────────┘   └─────────────────┘
+
 ```
 
 ## 📁 Project Structure
@@ -199,7 +202,9 @@ Configure these secrets in your GitHub repository (Settings → Secrets and vari
 |------------|-------------|
 | `DOCKER_USERNAME` | Docker Hub username |
 | `DOCKER_PASSWORD` | Docker Hub password/token |
-| `AWS_EC2_HOST` | Single EC2 public IP/hostname |
+| `AWS_EC2_HOST` |  EC2 public IP/hostname |
+| `AWS_EC2_HOST2` |  EC2 public IP/hostname |
+| `AWS_EC2_HOST3` |  EC2 public IP/hostname |
 | `AWS_EC2_SSH_KEY` | Private SSH key for EC2 access |
 | `AWS_EC2_USER` | EC2 username (e.g., `ec2-user` or `ubuntu`) |
 
